@@ -1,2 +1,2 @@
 # dockerfile
-making  eosforce  mirrors
+Dockerfile for delploy
