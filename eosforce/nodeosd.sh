@@ -1,16 +1,22 @@
 #!/bin/sh
 cd /opt/eosio/bin
 
-if [ -f '/opt/eosio/bin/data-dir/config.ini' ]; then
-    echo
-  else
-    cp /config.ini /opt/eosio/bin/data-dir
-fi
-
 if [ -f '/opt/eosio/bin/data-dir/genesis.json' ]; then
     echo
   else
     cp /genesis.json /opt/eosio/bin/data-dir
+fi
+
+if [ -f '/opt/eosio/bin/data-dir/System01.wasm' ]; then
+    echo
+  else
+    cp /System01.wasm /opt/eosio/bin/data-dir
+fi
+
+if [ -f '/opt/eosio/bin/data-dir/System01.abi' ]; then
+    echo
+  else
+    cp /System01.abi /opt/eosio/bin/data-dir
 fi
 
 

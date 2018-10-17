@@ -1,13 +1,13 @@
 FROM eosbuilder as builder
 
-ARG tag=v0.7
+ARG tag=v1.1.0
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssl ssh && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /root/.ssh && chmod 755 /root/.ssh
 
 RUN git clone https://github.com/eosforce/eosforce --recursive \
-    && cd eosforce && git checkout -b release && git pull origin release && git submodule update --init --recursive \
+    && cd eosforce && git submodule update --init --recursive \
     && cmake -H. -B"/tmp/build" -GNinja -DCMAKE_BUILD_TYPE=Release -DWASM_ROOT=/opt/wasm -DCMAKE_CXX_COMPILER=clang++ \
        -DCMAKE_C_COMPILER=clang -DCMAKE_INSTALL_PREFIX=/tmp/build  -DSecp256k1_ROOT_DIR=/usr/local -DBUILD_MONGO_DB_PLUGIN=true \
     && cmake --build /tmp/build --target install
